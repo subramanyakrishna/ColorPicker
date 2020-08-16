@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .upper {
+      width: 400px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #333;
+      border-radius: 50%;
+    }
+
+    .main {
+      width: 300px;
+      height: 300px;
+      padding: 0;
+      text-decoration: bold;
+      font-family: 'Helvetica Narrow', sans-serif;
+      line-height: 0.1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      background: #333;
+      border-radius: 50%;
+      color: #fff;
+    }
+
+    #box1 {
+      height: 30px;
+      width: 50%;
+      border: none;
+      border-radius: 50px;
+      text-align: center;
+      outline: none;
+      font-family: 'Helvetica Narrow', sans-serif;
+
+    }
+    #box2 {
+      height: 30px;
+      width: 50%;
+      border: none;
+      border-radius: 50px;
+      text-align: center;
+      outline: none;
+      font-family: 'Helvetica Narrow', sans-serif;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      height: 10px;
+      border-radius: 50px;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 25px;
+      width: 25px;
+      border-radius: 50%;
+      background: #fff;
+      cursor: pointer;
+      outline: none;
+    }
+
+    #red {
+      background: linear-gradient(90deg, #000, red);
+    }
+
+    #blue {
+      background: linear-gradient(90deg, #000, blue);
+    }
+
+    #green {
+      background: linear-gradient(90deg, #000, green);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="upper">
+    <div class="main">
+      Result:<input type="text" id="box1" value="RGB: rgb(255,255,255)" readonly>
+      <input type="text" id="box2" value="HEX: #FFFFFF" readonly>
+      Red:<input type="range" id="red" value="255" min="0" max="255">
+      Blue:<input type="range" id="green" value="255" min="0" max="255">
+      Green:<input type="range" id="blue" value="255" min="0" max="255">
+    </div>
+  </div>
+  <script type="text/javascript">
+    function rgbcolor() {
+      var red = document.getElementById('red').value;
+      var blue = document.getElementById('blue').value;
+      var green = document.getElementById('green').value;
+      var rgbcolor = 'rgb(' + red + ',' + green + ',' + blue + ')';
+      var rgbcolordisplay = 'RGB: '+rgbcolor;
+      document.body.style.backgroundColor = rgbcolor;
+      document.getElementById('box1').value = rgbcolordisplay;
+    }
+
+    function hexcolor() {
+      const decandhex = {
+        0: 0,
+        1: 1,
+        2: 2,
+        3: 3,
+        4: 4,
+        5: 5,
+        6: 6,
+        7: 7,
+        8: 8,
+        9: 9,
+        10: 'A',
+        11: 'B',
+        12: 'C',
+        13: 'D',
+        14: 'E',
+        15: 'F'
+      };
+      let red = document.getElementById('red').value;
+      let green = document.getElementById('blue').value;
+      let blue = document.getElementById('green').value;
+      
+      let redfirst = decandhex[Math.floor(red / 16)];
+      let redsecond = decandhex[(red / 16 - Math.floor(red / 16)) * 16];
+      let greenfirst = decandhex[Math.floor(green / 16)];
+      let greensecond = decandhex[(green / 16 - Math.floor(green / 16)) * 16];
+      let bluefirst = decandhex[Math.floor(blue / 16)];
+      let bluesecond = decandhex[(blue / 16 - Math.floor(blue / 16)) * 16];
+      let hexvalue = '#' + redfirst + redsecond + greenfirst + greensecond + bluefirst + bluesecond;
+      let hexvaluedisplay ='HEX: '+ hexvalue;
+      document.getElementById('box2').value = hexvaluedisplay;
+    }
+    document.getElementById('red').addEventListener('input', rgbcolor);
+    document.getElementById('blue').addEventListener('input', rgbcolor);
+    document.getElementById('green').addEventListener('input', rgbcolor);
+    document.getElementById('red').addEventListener('input', hexcolor);
+    document.getElementById('blue').addEventListener('input',hexcolor);
+    document.getElementById('green').addEventListener('input',hexcolor);
+  </script>
+</body>
+
+</html>
