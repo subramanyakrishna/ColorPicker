@@ -99,8 +99,8 @@
       Result:<input type="text" id="box1" value="RGB: rgb(255,255,255)" readonly>
       <input type="text" id="box2" value="HEX: #FFFFFF" readonly>
       Red:<input type="range" id="red" value="255" min="0" max="255">
-      Blue:<input type="range" id="green" value="255" min="0" max="255">
-      Green:<input type="range" id="blue" value="255" min="0" max="255">
+      Green:<input type="range" id="green" value="255" min="0" max="255">
+      Blue:<input type="range" id="blue" value="255" min="0" max="255">
     </div>
   </div>
   <script type="text/javascript">
@@ -108,7 +108,7 @@
       var red = document.getElementById('red').value;
       var blue = document.getElementById('blue').value;
       var green = document.getElementById('green').value;
-      var rgbcolor = 'rgb(' + red + ',' + blue + ',' + green + ')';
+      var rgbcolor = 'rgb(' + red + ',' + green + ',' + blue + ')';
       var rgbcolordisplay = 'RGB: '+rgbcolor;
       document.body.style.backgroundColor = rgbcolor;
       document.getElementById('box1').value = rgbcolordisplay;
